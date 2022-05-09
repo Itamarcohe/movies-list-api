@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+<div class="d-flex p-2" style="display: flex; flex-direction: column; margin: 0 auto; align-items: center;">
+
+<h2>Reviewed by me</h2>
+
+
+
+{% for review in my_list %}
+
+
+    <div class="card" style="width: 25rem; flex-direction: row;">
+  <img src="{{ review.movie_id.Poster_link }}" class="card-img-top" style="width: 35%; height: 100%;" alt="...">
+  <div class="card-body">
+    <h5 class="card-title">{{review.movie_id.Series_Title  }}  </h5>
+  <p>rate: {{review.rate }}</p>
+    <p>Date Watched: {{review.watched_date }}</p>
+    <p class="card-text">Message: {{ review.review_msg  }} </p>
+    <a href="{% url 'movie_details' review.movie_id.id %}" class="btn btn-primary">Details</a>
+  </div>
+</div>
+
+
+
+{% endfor %}
+
+</div>
+
+{% endblock %}
+
+
+
+
+
+<!--&lt;!&ndash;  <img src="{{ review.movie_id.Poster_link }}" class="card-img-top" alt="...">&ndash;&gt;-->
+<!--      <div class="card-body">-->
+<!--    <img src="{{ review.movie_id.Poster_link }}">-->
+<!--    <h5 class="card-title">Card title</h5>-->
+<!--    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>-->
+<!--    <a href="#" class="btn btn-primary">Go somewhere</a>-->
+<!--</div>-->

@@ -1,0 +1,76 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content  %}
+<section class="section-intro padding-y-sm">
+<div class="container">
+
+
+</div> <!-- container //  -->
+</section>
+<!-- ========================= SECTION MAIN END// ========================= -->
+<!-- ========================= SECTION  ========================= -->
+<section class="section-name padding-y-sm">
+<div class="container">
+
+<header class="section-heading">
+	        <div style="margin:auto; width:10%">
+            <div class="btn-group">
+            <button type="button" class="btn dropdown-toggle btn-dark" data-bs-toggle="dropdown">Sort By</button>
+            <div class="dropdown-menu">
+              <a class="dropdown-item" onclick="location.href ='/?sort_by_rating=asc'">Rating(High to Low)</a>
+              <a class="dropdown-item" onclick="location.href ='/?sort_by_rating=desc'">Rating(Low to High)</a>
+              <a class="dropdown-item" onclick="location.href ='/?sort_by_year=asc'">Year Published(First to Last)</a>
+              <a class="dropdown-item" onclick="location.href ='/?sort_by_year=desc'">Year Published(Last to First)</a>
+            </div>
+            </div>
+        </div>
+
+
+</header><!-- sect-heading -->
+{% if query %}
+<h1>Posts containing search result: "{{ query }}"</h1>
+            <h3>
+                {% with results.count as total_results %}
+                Found {{ total_results }} results
+                <br>
+                <br>
+                {% endwith %}
+
+            </h3>
+
+<div class="row">
+
+<div class="row">
+	{% for movie in results %}
+	<div class="col-md-3" style="border: solid;">
+		<div class="card card-product-grid">
+			<a href="{% url 'movie_details' movie.id %}" class="img-wrap"> <img src="{{ movie.Poster_link }}"> </a>
+			<figcaption class="info-wrap">
+				<a href="{% url 'movie_details' movie.id %}" class="title"> {{movie.Series_Title }} </a>
+				<p class="title"> {{movie.Genre }} </p>
+				<p class="title"> {{movie.Director }} </p>
+			</figcaption>
+		</div>
+	</div> <!-- col.// -->
+{% empty %}
+
+<h4>There were not result for your search.</h4>
+
+
+{% endfor %}
+{% else %}
+
+<h2>NO QUERY ERROR</h2>
+{% endif %}
+
+</div>
+</div>
+</div>
+</section>
+<!-- ========================= SECTION  END// ========================= -->
+
+
+{% endblock %}
+
+

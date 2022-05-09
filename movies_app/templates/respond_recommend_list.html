@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+
+{% block content  %}
+
+{% for recommend in recommneds %}
+{% if not recommend.is_watched_by_receiver %}
+<div class="container">
+<img src="{{ recommend.movie.Poster_link }}" style="float: left;">
+<h5 >Recommend from: {{ recommend.recommender }} </h5>
+<h5>Movie: {{ recommend.movie }} </h5>
+<h5>Date Received: {{ recommend.date_recommended }} </h5>
+<h5>Message: {{ recommend.message }} </h5>
+<h5> <a href="{% url 'respond_to' recommend.id %}">Respond</a> </h5>
+    {% endif %}
+{% endfor %}
+</div>
+
+
+{% endblock %}
