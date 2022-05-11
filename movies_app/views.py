@@ -69,11 +69,26 @@ def home(request):
             movies = movies.order_by('IMDB_Rating')
         else:
             movies = movies.order_by('-IMDB_Rating')
-    paginator = Paginator(movies, 32)
-    page = request.GET.get('page')
+
+    page = request.GET.get('page', 1)
+    paginator = Paginator(movies, 20)
     paged_movies = paginator.get_page(page)
+
+    # customized previous and next pages
+    page_num = int(page)
+    previous_range, next_range = page_num-2, page_num+3
+    before_pages = [x for x in range(previous_range, page_num) if x > 0]
+    next_pages = [x for x in range(page_num+1, next_range)]
+
+
+
+    # paged_movies = paginator.get_elided_page_range(number=page)
+
+
     context = {
         'movies': paged_movies,
+        'before_pages': before_pages,
+        'next_pages': next_pages,
     }
     return render(request, 'home.html', context)
 
