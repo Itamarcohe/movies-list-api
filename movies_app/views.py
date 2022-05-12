@@ -29,7 +29,7 @@ def loginPage(request):
             return redirect('/')
         else:
             messages.error(request, 'Username/Password does not exist')
-
+    print(messages)
     context = {'page': page}
     return render(request, 'login_register.html', context)
 
@@ -79,16 +79,13 @@ def home(request):
     previous_range, next_range = page_num-2, page_num+3
     before_pages = [x for x in range(previous_range, page_num) if x > 0]
     next_pages = [x for x in range(page_num+1, next_range)]
-
-
-
-    # paged_movies = paginator.get_elided_page_range(number=page)
-
-
+    print(paginator.page_range)
+    last_page = paginator.num_pages
     context = {
         'movies': paged_movies,
         'before_pages': before_pages,
         'next_pages': next_pages,
+        'last_page': last_page
     }
     return render(request, 'home.html', context)
 

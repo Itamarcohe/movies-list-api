@@ -3,48 +3,58 @@
 
 {% block content  %}
 
-{% if page == 'login' %}
-<br><br><br><br><br><br><br>
+
 <div class="container">
+
+{% if messages %}
+    <div class="d-flex justify-content-center">
+<ul class="messages">
+    {% for message in messages %}
+    <li>{{ message }} </li>
+    {% endfor %}
+</ul>
+    </div>
+</div>
+{% endif %}
+
+
+{% if page == 'login' %}
+<div class="container" style="">
+    <div class="d-flex justify-content-center">
+
     <form method="POST" action="">
         {% csrf_token %}
         <label>Username:</label>
         <input type="text" name="username" placeholder="Enter Username">
-
+        <br>
         <label>Password:</label>
         <input type="password" name="password" placeholder="Enter Password">
+        <br>
         <input type="submit" value="Login">
-    </form>
-    <p>Haven't signed up yet?</p>
+            <p>Haven't signed up yet?</p>
     <a href="{% url 'register' %}">Sign up now!</a>
-    <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br>  <br> <br> <br> <br> <br> <br>
 
+    </form>
+</div>
 </div>
 
 {% else %}
-<br><br><br><br><br><br>
 <div class="container">
+        <div class="d-flex justify-content-center">
+
     <form method="POST" action="">
         {% csrf_token %}
         {{ form.as_p }}
         <input type="submit" value="Register">
+                <p>Already signed up?</p>
+    <a href="{% url 'login' %}">Login</a>
+
 
     </form>
-        <p>Already signed up?</p>
-    <a href="{% url 'login' %}">Login</a>
-    <br> <br> <br> <br> <br> <br> <br> <br> <br> <br>
+            </div>
 
 </div>
 
-{% endif %}
-<div class="container">
-{% if messages %}
-<ul class="messages">
-    {% for message in messages %}
-    <li>{{ message }}</li>
-    {% endfor %}
-</ul>
-    </div>
 {% endif %}
 
 

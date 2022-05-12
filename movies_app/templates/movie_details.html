@@ -2,30 +2,25 @@
 {% load static %}
 {% block content %}
 
-<!--<div class="d-flex p-2" style="display: flex; flex-direction: column; margin: 0 auto; align-items: center;">-->
-
-<!--  <br>-->
-<!--  <h3>Name: {{movie.Series_Title  }} </h3>-->
-<!--  <h3>Released Year: {{movie.Released_Year  }} </h3>-->
-<!--  <h3>Genre: {{movie.Genre  }} </h3>-->
-<!--  <h3>IMDB Rating: {{movie.IMDB_Rating  }}</h3><span>votes: {{ movie.No_of_Votes }}</span>-->
-<!--  <img src="{{ movie.Poster_link }}" class="center">-->
-
-<!--  <h3>Overview:  {{movie.Overview  }} </h3>-->
-<!--</div>-->
-
 <div class="card mx-auto" style="width: 23rem;">
 
-      <div class="card-header pull-left">
-<!--        <img src="{{ movie.Poster_link }}" alt="">-->
-<!--  <img class="card-img-bottom" src="{{ movie.Poster_link }}" style="width: 25%;" alt="Card image cap">-->
   <div class="card-body">
-    <h5 class="card-title">{{movie.Series_Title  }}</h5>
+
+    <h1 class="card-title" >{{movie.Series_Title  }}</h1>
     <p>Released Year: {{movie.Released_Year  }} </p>
     <p>Genre: {{movie.Genre  }} </p>
     <p>IMDB Rating: {{movie.IMDB_Rating  }}</p>
+    <p>Run time: {{movie.Runtime  }}</p>
+    <p>Meta score: {{movie.Meta_score  }} <span>(reputed critics) </span></p>
+    <p>Director: {{movie.Director  }}</p>
+    <p>Stars: {{movie.star1 }}, {{ movie.star2 }}, {{ movie.star3 }}, {{ movie.star4 }}</p>
+    <p>Votes: {{movie.No_of_Votes  }}</p>
+    <p>Gross: {{movie.Gross  }}</p>
 
     <p class="card-text">{{ movie.Overview  }}</p>
+
+
+    <img src="{{ movie.Poster_link }}" class="card mx-auto">
 
   </div>
 
